@@ -26,6 +26,7 @@ BuildRequires:	file
 BuildRequires:	openjade
 BuildRequires:	docbook-style-dsssl
 Epoch:		1
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 mod_injection is an Apache 2.0.X filter module. It allows you to

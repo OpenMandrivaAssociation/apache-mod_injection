@@ -6,7 +6,7 @@
 Summary:	DSO module for the apache web server
 Name:		apache-%{mod_name}
 Version:	0.3.1
-Release:	%mkrel 8
+Release:	%mkrel 9
 Group:		System/Servers
 License:	BSD
 URL:		http://pmade.org/pjones/software/mod_injection/download.html

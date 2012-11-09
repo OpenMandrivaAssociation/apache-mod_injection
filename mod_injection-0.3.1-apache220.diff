@@ -1,0 +1,22 @@
+--- src/mod_injection.c	2005-12-18 19:35:12.000000000 +0100
++++ src/mod_injection.c.oden	2005-12-18 19:34:38.000000000 +0100
+@@ -252,7 +252,7 @@
+ 	     * Allow MIME types to have shell file glob patterns
+ 	     */
+ 	    for (; i<cfg->content_types->nelts; ++i) {
+-		if (apr_fnmatch(element[i], f->r->content_type, FNM_PATHNAME) == APR_SUCCESS) {
++		if (apr_fnmatch(element[i], f->r->content_type, APR_FNM_PATHNAME) == APR_SUCCESS) {
+ 		    allow = 1;
+ 		    break;
+ 		}
+@@ -275,7 +275,9 @@
+ 	apr_table_unset(f->r->headers_out, "Content-Length");
+     }
+ 
+-    APR_BRIGADE_FOREACH(e, bb) {
++    for (e = APR_BRIGADE_FIRST(bb);
++         e != APR_BRIGADE_SENTINEL(bb);
++         e = APR_BUCKET_NEXT(e)) {
+ 	/*
+ 	 * scan each bucket looking for a body. pass each brigade to the
+ 	 * next filter as we are done with them. if we find the body tag, we

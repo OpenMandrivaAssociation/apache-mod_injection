@@ -1,0 +1,54 @@
+--- docs/manual/Makefile	2003-02-05 04:09:59.000000000 +0100
++++ docs/manual/Makefile.oden	2005-12-18 20:14:50.000000000 +0100
+@@ -10,46 +10,25 @@
+ POSTSCRIPT_DIR=		postscript
+ ONE_HTML_OUT=		${ONE_HTML_DIR}/${INPUT_FILE:.xml=.html}
+ 
+-.if defined(FREEBSDDOC)
+ SEP_HTML_OUT=		${SEP_HTML_DIR}/index.html
+-.else
+-SEP_HTML_OUT=		${SEP_HTML_DIR}/book1.htm
+-.endif
+ 
+ POSTSCRIPT_OUT=		${POSTSCRIPT_DIR}/${INPUT_FILE:.xml=.ps}
+ PDF_OUT=		${POSTSCRIPT_DIR}/${INPUT_FILE:.xml=.pdf}
+ 
+-PREFIX?=		/usr/local
++PREFIX?=		/usr
+ JADE=			${PREFIX}/bin/openjade
+ 
+-.if defined(FREEBSDDOC)
+-CATALOGS+=		-c ${FREEBSDDOC}/share/sgml/catalog
+-.endif
+-
+-CATALOGS+=		-c ${PREFIX}/share/sgml/docbook/dsssl/modular/catalog
+-CATALOGS+=		-c ${PREFIX}/share/sgml/iso8879/catalog
+-CATALOGS+=		-c ${PREFIX}/share/sgml/docbook/catalog
+-CATALOGS+=		-c ${PREFIX}/share/sgml/openjade/catalog
++CATALOGS+=		-c ${PREFIX}/share/sgml/docbook/dsssl-stylesheets/catalog
+ 
+ JADE_FLAGS=		${CATALOGS}
+ 
+-.if defined(FREEBSDDOC)
+-DSL_HTML=		${FREEBSDDOC}/share/sgml/default.dsl
+-DSL_PRINT=		${FREEBSDDOC}/share/sgml/default.dsl
+-HTMLFLAGS=		-ioutput.html
+-PRINTFLAGS=		-ioutput.print -ioutput.print.justify -V %two-side% -ioutput.print.twoside
+-PRINTFLAGS+=		-ioutput.print.niceheaders -V minimal-section-labels
+-TEXCMDS=		\RequirePackage{url}
+-TEXCMDS+=		\def\PageTwoSide{1}
+-.else
+-DSL_HTML=		${PREFIX}/share/sgml/docbook/dsssl/modular/html/docbook.dsl
+-DSL_PRINT=		${PREFIX}/share/sgml/docbook/dsssl/modular/print/docbook.dsl
++DSL_HTML=		${PREFIX}/share/sgml/docbook/dsssl-stylesheets/html/docbook.dsl
++DSL_PRINT=		${PREFIX}/share/sgml/docbook/dsssl-stylesheets/print/docbook.dsl
+ HTMLFLAGS=		
+ PRINTFLAGS=		
+ TEXCMDS=
+-.endif
+ 
+-TIDY=			${PREFIX}/bin/tidy -i -m -raw -preserve -f /dev/null
++TIDY=			/bin/true
+ TEX=			${PREFIX}/bin/tex
+ DVIPS=			${PREFIX}/bin/dvips
+ PDFTEX=			${PREFIX}/bin/pdftex

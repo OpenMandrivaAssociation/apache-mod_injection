@@ -9,7 +9,7 @@ Version:	0.3.1
 Release:	16
 Group:		System/Servers
 License:	BSD
-URL:		http://pmade.org/pjones/software/mod_injection/download.html
+URL:		https://pmade.org/pjones/software/mod_injection/download.html
 Source0: 	%{mod_name}-%{version}.tar.bz2
 Source1:	%{mod_conf}.bz2
 Patch0:		%{mod_name}-0.3.0-register.patch
